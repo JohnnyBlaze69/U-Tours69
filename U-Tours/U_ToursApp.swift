@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct U_ToursApp: App {
+    // MARK: Properties
     let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
