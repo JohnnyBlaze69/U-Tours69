@@ -30,7 +30,7 @@ struct OnboardingContent: View {
                         .foregroundColor(activeColor)
                     Spacer()
                     Button {
-                    // insert action here
+                        // insert action here
                     } label: {
                         Text("Skip")
                             .foregroundColor(.gray)
@@ -41,13 +41,12 @@ struct OnboardingContent: View {
                 // Progress View here
                 CustomProgressBar(step: $step, progressTitle: $progressTitle)
                     .padding(.vertical)
-                    
+                
                 // Onboarding View here
                 ShowOnboardingView(selectedView: $selectedView, onboardingModel: onboardingViewModel.onboardingModel)
                 
                 // Next Button here
                 Button {
-                    // insert action here
                     increaseStep()
                 } label: {
                     Text(selectedView < 3 ? "Next": "Start Touring !")
@@ -61,8 +60,10 @@ struct OnboardingContent: View {
                 .cornerRadius(10)
                 Spacer()
             }
+            .zIndex(1.0)
             .frame(width: Size.shared.screenWidth() * 0.80)
-
+            Image("ic_world_map_1")
+                .offset(y: Size.shared.screenHeight() * 0.32)
         }
     }
     func increaseStep() {
@@ -101,7 +102,6 @@ struct OnboardingWindow: View {
     }
 }
 
-// Misc
 struct ShowOnboardingView: View {
     @Binding var selectedView: Int
     let maxNumberOfScreens = 2
@@ -120,9 +120,6 @@ struct ShowOnboardingView: View {
     }
 }
 
-class Constants {
-    static let currentOnboardingVersion = "onboardingVersion_1.0.0"
-}
 
 // VIEWMODEL
 final class OnboardingViewModel: ObservableObject {
@@ -144,11 +141,6 @@ class OnboardingModel: Identifiable {
         self.subtitle = subtitle
     }
 }
-
-
-
-// Custom Progress Bar
-
 
 // MARK: Preview
 struct OnboardingView_Previews: PreviewProvider {

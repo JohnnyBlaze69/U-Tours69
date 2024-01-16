@@ -10,12 +10,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NativeTabView()
-            .onAppear {
-                let tabBarAppearance = UITabBarAppearance()
-                tabBarAppearance.configureWithOpaqueBackground()
-                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-            }
+        OnboardingView()
+//        NativeTabView()
+//            .onAppear {
+//                let tabBarAppearance = UITabBarAppearance()
+//                tabBarAppearance.configureWithOpaqueBackground()
+//                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+//            }
     }
 }
 
