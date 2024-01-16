@@ -1,0 +1,159 @@
+//
+//  HomepageView.swift
+//  U-Tours
+//
+//  Created by Anshumaan Singh on 08/01/24.
+//
+
+import SwiftUI
+
+struct HomepageView: View {
+    init() {
+        UIScrollView.appearance().bounces = false
+    }
+    let height = UIScreen.main.bounds.height
+    let width = UIScreen.main.bounds.width
+    @State private var showFilterByView: Bool = false
+    var body: some View {
+        ZStack {
+            if showFilterByView {
+                FilterByView(showFilterByView: $showFilterByView)
+//                    .border(.green, width: 3)
+            }else{
+                HomePageContent(showFilterByView: $showFilterByView)
+            }
+            
+        }
+        .navigationBarHidden(true)
+    }
+}
+
+struct HomePageContent: View {
+    let height = UIScreen.main.bounds.height
+    let width = UIScreen.main.bounds.width
+    @Binding var showFilterByView: Bool
+    @State private var showSearchDestView: Bool = false
+//    MARK: NOT WORKING,?
+//    init(showFilterByView: Bool) {
+//        UIScrollView.appearance().bounces = false
+//        self.showFilterByView = showFilterByView
+//    }
+    var body: some View {
+        VStack(spacing: 0){
+            VStack{
+                Text("Explore")
+                    .font(.title2)
+                    .onTapGesture {
+                        withAnimation(.linear(duration: 0.20)) {
+                            // Filter By View
+                            //showFilterByView.toggle()
+                            
+                            // Search Destinations View
+                            showSearchDestView.toggle()
+                        }
+                    }
+                // insert horizontal scroll view here
+            }
+            .frame(width: width, height: height * 0.10)
+            .background(Color.white)
+            
+            
+            // Map View
+            ZStack{
+                MapView()
+                
+                ExtractedSubView()
+                
+            }
+            .frame(height: height * 0.75)
+//            .border(.red, width: 3)
+            
+            Spacer()
+        }
+        .sheet(isPresented: $showSearchDestView) {
+            SearchDestinationView()
+                
+        }
+    }
+}
+
+struct HomepageView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack{
+            HomepageView()
+        }
+    }
+}
+
+
+struct MapView: View {
+    var body: some View {
+        Image("ic_map_image")
+            .resizable()
+            .scaledToFill()
+            .border(.gray, width: 1)
+            
+    }
+}
+
+
+
+
+struct ExtractedSubView: View {
+    let height = UIScreen.main.bounds.height
+    let width = UIScreen.main.bounds.width
+    var body: some View {
+        ScrollView {
+            VStack(spacing:0) {
+                HStack{
+                    Image(systemName: "magnifyingglass")
+                        .frame(width: 20, height: 20)
+                    Text("Advanced Search")
+                        .font(.system(size: 15))
+                }
+                .foregroundColor(.blue)
+                
+                
+                // MARK: POPULAR TOURS
+                HStack {
+                    Text("Popular Tours")
+                        .font(.system(size: 20))
+                        .bold()
+                    Spacer()
+                    Button{
+                        print("Debug: See All tap")
+                    } label: {
+                        Text("See All")
+                            .font(.system(size: 12))
+                            .foregroundColor(.blue)
+                    }
+                }
+                
+                DestinationCardsView()
+                
+                // MARK: FEATURED
+                HStack {
+                    Text("Featured")
+                        .font(.system(size: 20))
+                        .bold()
+                    Spacer()
+                    
+                    Button{
+                        print("Debug: See All tap")
+                    } label: {
+                        Text("See All")
+                            .font(.system(size: 12))
+                            .foregroundColor(.blue)
+                    }
+                }
+                
+                DestinationCardsView()
+                
+            }
+            .frame(width: width)
+            .background(Color.white)
+            .cornerRadius(20)
+        }
+        //.padding(.top, height * 0.15)
+    }
+}
