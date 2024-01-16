@@ -158,10 +158,10 @@
 				5B9AE5612B4D4BB300058712 /* CustomToggle.swift */,
 				5B9AE5632B4D531400058712 /* CustomSlider.swift */,
 				5B9510692B4BD90300471C92 /* BottomSheet.swift */,
-				5BB6A2E22B502344003A3F98 /* guideVids.mp4 */,
 				5B5CF8612B564D5500985C55 /* WrappingHStack.swift */,
 				5B5CF8632B564D7600985C55 /* CustomLocation.swift */,
 				5B6407AA2B566F5500B7A348 /* CustomProgressBar.swift */,
+				5BB6A2E22B502344003A3F98 /* guideVids.mp4 */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
